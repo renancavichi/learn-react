@@ -1,0 +1,9 @@
+.nav-menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0 0 0 1rem;
+}
+.nav-menu li {
+  margin: 0 0 0 0.9rem;
+  font-size: 0.8rem;
+}
