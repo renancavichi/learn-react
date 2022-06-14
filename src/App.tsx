@@ -1,13 +1,12 @@
-import {ThemeProvider} from '@mui/material/styles'
+import Providers from './providers/Providers'
 import CssBaseline from '@mui/material/CssBaseline'
 import Menu from './components/layout/Menu'
-import theme from './theme'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
+		<Providers>
 			<CssBaseline />
 			<Menu />
 			<Container>
@@ -22,7 +21,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
 						.join('\n')}
 				</Box>
 			</Container>
-		</ThemeProvider>
+		</Providers>
 	)
 }
 
