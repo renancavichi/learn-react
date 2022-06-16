@@ -1,8 +1,9 @@
 import {createTheme} from '@mui/material/styles'
 import {grey} from '@mui/material/colors'
 
-const theme = createTheme({
+export const light = createTheme({
 	palette: {
+		mode: 'light',
 		primary: {
 			main: '#C7581A'
 		},
@@ -21,4 +22,23 @@ const theme = createTheme({
 	}
 })
 
-export default theme
+export const dark = createTheme({
+	palette: {
+		mode: 'dark',
+		primary: {
+			main: '#C7581A'
+		},
+		secondary: {
+			main: '#159CAB'
+		}
+	},
+	components: {
+		MuiAppBar: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#1c1c1c'
+				}
+			}
+		}
+	}
+})
