@@ -8,6 +8,7 @@ import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
 import {Tab} from '@mui/material'
 import {useState} from 'react'
+import {Link} from 'react-router-dom'
 
 interface Props {
 	children: React.ReactNode
@@ -24,7 +25,7 @@ export default function Menu() {
 			<AppBar>
 				<Toolbar variant="dense">
 					<Logo sx={sx.logo} />
-					<Typography variant="h5" component="div">
+					<Typography variant="h5" component="h1">
 						Renan Cavichi
 					</Typography>
 					<Nav>
@@ -33,16 +34,12 @@ export default function Menu() {
 							onChange={handleChange}
 							component="ul"
 							variant="standard"
-							TabIndicatorProps={{style: {height: 4}}}
-							sx={{
-								marginBlockEnd: 0,
-								marginBlockStart: 0
-							}}
+							sx={sx.tabs}
 						>
-							<StyledTab label="Home" />
-							<StyledTab label="Articles" />
-							<StyledTab label="Academic" />
-							<StyledTab label="Projects" />
+							<NavTab label="Home" to="/#home" />
+							<NavTab label="Articles" to="/#articles" />
+							<NavTab label="Academic" to="/#academic" />
+							<NavTab label="Projects" to="/#projects" />
 						</Tabs>
 					</Nav>
 				</Toolbar>
@@ -62,25 +59,28 @@ const Nav = (props: Props) => {
 const sx = {
 	logo: {
 		mr: 1
+	},
+	tabs: {
+		marginBlockEnd: 0,
+		marginBlockStart: 0,
+		paddingInlineStart: 0,
+		'& .MuiTabs-indicator': {
+			height: 4
+		}
 	}
 }
 
 interface StyledTabProps {
 	label: string
+	to: string
 }
 
-const StyledTab = styled((props: StyledTabProps) => (
-	<Tab
-		component="li"
-		disableRipple
-		//sx={{'&:hover': {backgroundColor: '#fff'}}}
-		{...props}
-	/>
+const NavTab = styled((props: StyledTabProps) => (
+	<Tab component={Link} disableRipple {...props} />
 ))(({theme}) => ({
 	textTransform: 'none',
 	fontWeight: theme.typography.fontWeightRegular,
 	fontSize: theme.typography.pxToRem(15),
-	marginRight: theme.spacing(1),
 	color: 'rgba(255, 255, 255, 0.7)',
 	'&.Mui-selected': {
 		color: '#fff'
