@@ -20,5 +20,9 @@
     },
     "[graphql]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "cSpell.words": [
+      "Cavichi",
+      "Renan"
+    ]
 }
