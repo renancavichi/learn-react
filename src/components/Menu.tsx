@@ -1,47 +1,50 @@
+import {useState} from 'react'
+import {Link} from 'react-router-dom'
+import {styled} from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import {styled} from '@mui/material/styles'
-import Logo from './Logo'
-import HideOnScroll from '../utils/HideOnScroll'
 import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
-import {Tab} from '@mui/material'
-import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import Tab from '@mui/material/Tab'
+import Container from '@mui/material/Container'
+import Stack from '@mui/material/Stack'
+import Logo from './Logo'
+import HideOnScroll from '../utils/HideOnScroll'
 
 interface Props {
 	children: React.ReactNode
 }
 
-export default function Menu() {
+const Menu = () => {
 	const [value, setValue] = useState(0)
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue)
 	}
+
 	return (
 		<HideOnScroll>
 			<AppBar>
 				<Toolbar variant="dense">
-					<Logo sx={sx.logo} />
-					<Typography variant="h5" component="h1">
-						Renan Cavichi
-					</Typography>
-					<Nav>
-						<Tabs
-							value={value}
-							onChange={handleChange}
-							component="ul"
-							variant="standard"
-							sx={sx.tabs}
-						>
-							<NavTab label="Home" to="/#home" />
-							<NavTab label="Articles" to="/#articles" />
-							<NavTab label="Academic" to="/#academic" />
-							<NavTab label="Projects" to="/#projects" />
-						</Tabs>
-					</Nav>
+					<Container disableGutters sx={style.container}>
+						<Link to="/#home" style={style.linkLogo}>
+							<Stack direction="row" sx={{alignItems: 'center'}}>
+								<Logo sx={style.logo} />
+								<Typography variant="h5" component="h1">
+									Renan Cavichi
+								</Typography>
+							</Stack>
+						</Link>
+						<Nav>
+							<Tabs value={value} onChange={handleChange} sx={style.tabs}>
+								<NavTab label="Home" to="/#home" />
+								<NavTab label="Articles" to="/#articles" />
+								<NavTab label="Academic" to="/#academic" />
+								<NavTab label="Projects" to="/#projects" />
+							</Tabs>
+						</Nav>
+					</Container>
 				</Toolbar>
 			</AppBar>
 		</HideOnScroll>
@@ -54,20 +57,6 @@ const Nav = (props: Props) => {
 			{props.children}
 		</Box>
 	)
-}
-
-const sx = {
-	logo: {
-		mr: 1
-	},
-	tabs: {
-		marginBlockEnd: 0,
-		marginBlockStart: 0,
-		paddingInlineStart: 0,
-		'& .MuiTabs-indicator': {
-			height: 4
-		}
-	}
 }
 
 interface StyledTabProps {
@@ -90,3 +79,26 @@ const NavTab = styled((props: StyledTabProps) => (
 	},
 	'&:hover': {color: '#fff'}
 }))
+
+const style = {
+	logo: {
+		mr: 1
+	},
+	tabs: {
+		'& .MuiTabs-indicator': {
+			height: 4,
+			borderRadius: 4
+		}
+	},
+	linkLogo: {
+		textDecoration: 'none',
+		color: '#fff',
+		width: 'max-content'
+	},
+	container: {
+		display: 'flex',
+		alignItems: 'center'
+	}
+}
+
+export default Menu
