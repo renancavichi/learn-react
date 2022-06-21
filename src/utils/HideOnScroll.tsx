@@ -9,7 +9,8 @@ interface Props {
 const HideOnScroll = (props: Props) => {
 	const {children, window} = props
 	const trigger = useScrollTrigger({
-		target: window ? window() : undefined
+		target: window ? window() : undefined,
+		threshold: 200
 	})
 
 	return (

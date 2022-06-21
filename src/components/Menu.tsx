@@ -1,5 +1,5 @@
-import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
 import {styled} from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
@@ -16,12 +16,75 @@ interface Props {
 	children: React.ReactNode
 }
 
+interface Sections {
+	home: number | undefined
+	articles: number | undefined
+	academic: number | undefined
+	projects: number | undefined
+}
+
 const Menu = () => {
 	const [value, setValue] = useState(0)
+	const navigate = useNavigate()
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue)
 	}
+
+	const handleScroll = () => {
+		const position = window?.pageYOffset || 0
+		const home = document.querySelector('#home')
+		const articles = document.querySelector('#articles')
+		const academic = document.querySelector('#academic')
+		const projects = document.querySelector('#projects')
+		const sectionsYOffset = {
+			home:
+				home?.getBoundingClientRect().top !== undefined
+					? home?.getBoundingClientRect().top + position
+					: 0,
+			articles:
+				articles?.getBoundingClientRect().top !== undefined
+					? articles?.getBoundingClientRect().top + position
+					: 0,
+			academic:
+				academic?.getBoundingClientRect().top !== undefined
+					? academic?.getBoundingClientRect().top + position
+					: 0,
+			projects:
+				projects?.getBoundingClientRect().top !== undefined
+					? projects?.getBoundingClientRect().top + position
+					: 0
+		}
+		if (position < sectionsYOffset.home + 100) {
+			setValue(0)
+			//navigate('/#home')
+		}
+		if (
+			position > sectionsYOffset.articles - 100 &&
+			position < sectionsYOffset.articles + 30
+		) {
+			setValue(1)
+		}
+		if (
+			position > sectionsYOffset.academic - 100 &&
+			position < sectionsYOffset.academic + 30
+		) {
+			setValue(2)
+		}
+		if (
+			position > sectionsYOffset.projects - 100 &&
+			position < sectionsYOffset.projects + 30
+		) {
+			setValue(3)
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll)
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
 
 	return (
 		<HideOnScroll>
