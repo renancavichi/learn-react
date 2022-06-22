@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {useEffect, useRef, useState} from 'react'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import {styled} from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
@@ -11,71 +11,73 @@ import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
 import Logo from './Logo'
 import HideOnScroll from '../utils/HideOnScroll'
+import scrollSmoothTo from '../utils/scrollSmoothTo'
 
 interface Props {
 	children: React.ReactNode
 }
 
-interface Sections {
-	home: number | undefined
-	articles: number | undefined
-	academic: number | undefined
-	projects: number | undefined
-}
-
 const Menu = () => {
-	const [value, setValue] = useState(0)
+	const {pathname} = useLocation()
+	const [value, setValue] = useState<number | false>(
+		pathname === '/' || pathname === '' ? 0 : false
+	)
+	const [isScrolling, setIsScrolling] = useState(false)
+	const isScrollingRef = useRef(isScrolling)
 	const navigate = useNavigate()
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue)
 	}
 
+	const setIsScrollingRef = (data: boolean) => {
+		isScrollingRef.current = data
+		setIsScrolling(data)
+	}
+
 	const handleScroll = () => {
-		const position = window?.pageYOffset || 0
-		const home = document.querySelector('#home')
-		const articles = document.querySelector('#articles')
-		const academic = document.querySelector('#academic')
-		const projects = document.querySelector('#projects')
-		const sectionsYOffset = {
-			home:
-				home?.getBoundingClientRect().top !== undefined
-					? home?.getBoundingClientRect().top + position
-					: 0,
-			articles:
-				articles?.getBoundingClientRect().top !== undefined
-					? articles?.getBoundingClientRect().top + position
-					: 0,
-			academic:
-				academic?.getBoundingClientRect().top !== undefined
-					? academic?.getBoundingClientRect().top + position
-					: 0,
-			projects:
-				projects?.getBoundingClientRect().top !== undefined
-					? projects?.getBoundingClientRect().top + position
-					: 0
-		}
-		if (position < sectionsYOffset.home + 100) {
-			setValue(0)
-			//navigate('/#home')
-		}
-		if (
-			position > sectionsYOffset.articles - 100 &&
-			position < sectionsYOffset.articles + 30
-		) {
-			setValue(1)
-		}
-		if (
-			position > sectionsYOffset.academic - 100 &&
-			position < sectionsYOffset.academic + 30
-		) {
-			setValue(2)
-		}
-		if (
-			position > sectionsYOffset.projects - 100 &&
-			position < sectionsYOffset.projects + 30
-		) {
-			setValue(3)
+		if (!isScrollingRef.current) {
+			const position = window?.pageYOffset || 0
+			const home = document.querySelector('#home')
+			const articles = document.querySelector('#articles')
+			const academic = document.querySelector('#academic')
+			const projects = document.querySelector('#projects')
+			const sectionsYOffset = {
+				home:
+					home?.getBoundingClientRect().top !== undefined
+						? home?.getBoundingClientRect().top + position
+						: 0,
+				articles:
+					articles?.getBoundingClientRect().top !== undefined
+						? articles?.getBoundingClientRect().top + position
+						: 0,
+				academic:
+					academic?.getBoundingClientRect().top !== undefined
+						? academic?.getBoundingClientRect().top + position
+						: 0,
+				projects:
+					projects?.getBoundingClientRect().top !== undefined
+						? projects?.getBoundingClientRect().top + position
+						: 0
+			}
+			if (position < sectionsYOffset.home + 200) {
+				setValue(0)
+			} else if (
+				position > sectionsYOffset.articles - 300 &&
+				position < sectionsYOffset.articles + 100
+			) {
+				setValue(1)
+			} else if (
+				position > sectionsYOffset.academic - 300 &&
+				position < sectionsYOffset.academic + 100
+			) {
+				setValue(2)
+			} else if (
+				position > sectionsYOffset.projects - 300 &&
+				position < sectionsYOffset.projects + 100
+			) {
+				setValue(3)
+			}
 		}
 	}
 
@@ -91,7 +93,14 @@ const Menu = () => {
 			<AppBar>
 				<Toolbar variant="dense">
 					<Container disableGutters sx={style.container}>
-						<Link to="/#home" style={style.linkLogo}>
+						<Link
+							to="/"
+							onClick={() => {
+								setValue(0)
+								scrollSmoothTo('#home')
+							}}
+							style={style.linkLogo}
+						>
 							<Stack direction="row" sx={{alignItems: 'center'}}>
 								<Logo sx={style.logo} />
 								<Typography variant="h5" component="h1">
@@ -101,10 +110,55 @@ const Menu = () => {
 						</Link>
 						<Nav>
 							<Tabs value={value} onChange={handleChange} sx={style.tabs}>
-								<NavTab label="Home" to="/#home" />
-								<NavTab label="Articles" to="/#articles" />
-								<NavTab label="Academic" to="/#academic" />
-								<NavTab label="Projects" to="/#projects" />
+								<NavTab
+									label="Home"
+									onClick={() => {
+										if (pathname === '/' || pathname === '') {
+											scrollSmoothTo('#home')
+											setIsScrollingRef(true)
+											setTimeout(() => setIsScrollingRef(false), 2300)
+										} else {
+											navigate('/#home')
+										}
+									}}
+								/>
+								<NavTab
+									label="Articles"
+									onClick={() => {
+										if (pathname === '/' || pathname === '') {
+											scrollSmoothTo('#articles')
+											setIsScrollingRef(true)
+											setTimeout(() => setIsScrollingRef(false), 2300)
+										} else {
+											navigate('/#articles')
+										}
+									}}
+								/>
+								<NavTab
+									label="Academic"
+									onClick={() => {
+										if (pathname === '/' || pathname === '') {
+											scrollSmoothTo('#academic')
+											setIsScrollingRef(true)
+											setTimeout(() => setIsScrollingRef(false), 2300)
+										} else {
+											setIsScrolling(true)
+											navigate('/#academic')
+										}
+									}}
+								/>
+								<NavTab
+									label="Projects"
+									onClick={() => {
+										if (pathname === '/' || pathname === '') {
+											scrollSmoothTo('#projects')
+											setIsScrollingRef(true)
+											setTimeout(() => setIsScrollingRef(false), 2300)
+										} else {
+											navigate('/#projects')
+										}
+									}}
+								/>
 							</Tabs>
 						</Nav>
 					</Container>
@@ -124,15 +178,15 @@ const Nav = (props: Props) => {
 
 interface StyledTabProps {
 	label: string
-	to: string
+	onClick?: () => void
 }
 
 const NavTab = styled((props: StyledTabProps) => (
-	<Tab component={Link} disableRipple {...props} />
+	<Tab disableRipple {...props} />
 ))(({theme}) => ({
 	textTransform: 'none',
 	fontWeight: theme.typography.fontWeightRegular,
-	fontSize: theme.typography.pxToRem(15),
+	fontSize: theme.typography.pxToRem(16),
 	color: 'rgba(255, 255, 255, 0.7)',
 	'&.Mui-selected': {
 		color: '#fff'

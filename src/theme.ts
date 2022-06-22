@@ -1,5 +1,4 @@
 import {createTheme, responsiveFontSizes} from '@mui/material/styles'
-import {grey} from '@mui/material/colors'
 
 export const light = responsiveFontSizes(
 	createTheme({
@@ -28,7 +27,7 @@ export const light = responsiveFontSizes(
 			MuiAppBar: {
 				styleOverrides: {
 					root: {
-						backgroundColor: grey[900],
+						backgroundColor: '#000000e0',
 						boxShadow:
 							'-1px 0px 1px -7px rgb(0 0 0 / 20%), 1px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 2px 0px rgb(0 0 0 / 12%)'
 					}
@@ -65,7 +64,7 @@ export const dark = responsiveFontSizes(
 			MuiAppBar: {
 				styleOverrides: {
 					root: {
-						backgroundColor: '#000000',
+						backgroundColor: '#000000e0',
 						boxShadow: 'none'
 					}
 				}
