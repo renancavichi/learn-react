@@ -21,5 +21,11 @@
 	"[graphql]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"cSpell.words": ["bgcolor", "Cavichi", "Renan", "Swipeable"]
+	"cSpell.words": [
+    "bgcolor",
+    "browserslist",
+    "Cavichi",
+    "Renan",
+    "Swipeable"
+  ]
 }
