@@ -6,6 +6,7 @@ import AvatarRenanCavichi from '../../assets/images/avatar-renan-cavichi.jpg'
 import {BsArrowDownCircle} from 'react-icons/bs'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
+import Button from '@mui/material/Button'
 
 const HomeGreetings = () => {
 	return (
@@ -103,6 +104,9 @@ const HomeGreetings = () => {
 							specialized on Web Development, Usability{' '}
 							<span style={{color: '#C4C4C4'}}>and</span> Agile Methods.
 						</Typography>
+						<Button variant="contained" sx={{mt: 3}}>
+							Download CV
+						</Button>
 					</Grid>
 				</Grid>
 				<Box sx={{textAlign: 'center', position: 'absolute', bottom: 60}}>
