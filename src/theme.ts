@@ -32,6 +32,21 @@ export const light = responsiveFontSizes(
 							'-1px 0px 1px -7px rgb(0 0 0 / 20%), 1px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 2px 0px rgb(0 0 0 / 12%)'
 					}
 				}
+			},
+			MuiDrawer: {
+				styleOverrides: {
+					root: {
+						backgroundColor: '#00000026'
+					}
+				}
+			},
+			MuiButton: {
+				styleOverrides: {
+					root: {
+						borderRadius: 20,
+						padding: '6px 24px'
+					}
+				}
 			}
 		}
 	})
@@ -66,6 +81,13 @@ export const dark = responsiveFontSizes(
 					root: {
 						backgroundColor: '#000000e0',
 						boxShadow: 'none'
+					}
+				}
+			},
+			MuiDrawer: {
+				styleOverrides: {
+					root: {
+						backgroundColor: '#00000026'
 					}
 				}
 			}
