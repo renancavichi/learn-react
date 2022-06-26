@@ -2,7 +2,7 @@ import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 import Article from './pages/Article'
 import Index from './pages/Index'
-import Layout from './pages/Layout'
+import Layout from './components/layout/Layout'
 
 const Router = () => {
 	return (
