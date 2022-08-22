@@ -27,10 +27,10 @@ const sections = [
 		label: 'Home',
 		id: '#home'
 	},
-	{
-		label: 'Articles',
-		id: '#articles'
-	},
+	// {
+	// 	label: 'Articles',
+	// 	id: '#articles'
+	// },
 	{
 		label: 'Academic',
 		id: '#academic'
@@ -73,10 +73,10 @@ const Header = () => {
 					home?.getBoundingClientRect().top !== undefined
 						? home?.getBoundingClientRect().top + position
 						: 0,
-				articles:
-					articles?.getBoundingClientRect().top !== undefined
-						? articles?.getBoundingClientRect().top + position
-						: 0,
+				// articles:
+				// 	articles?.getBoundingClientRect().top !== undefined
+				// 		? articles?.getBoundingClientRect().top + position
+				// 		: 0,
 				academic:
 					academic?.getBoundingClientRect().top !== undefined
 						? academic?.getBoundingClientRect().top + position
@@ -88,21 +88,21 @@ const Header = () => {
 			}
 			if (position < sectionsYOffset.home + 200) {
 				setValue(0)
-			} else if (
-				position > sectionsYOffset.articles - 300 &&
-				position < sectionsYOffset.articles + 100
-			) {
-				setValue(1)
+				//}  else if (
+				// 	position > sectionsYOffset.articles - 300 &&
+				// 	position < sectionsYOffset.articles + 100
+				// ) {
+				// setValue(1)
 			} else if (
 				position > sectionsYOffset.academic - 300 &&
 				position < sectionsYOffset.academic + 100
 			) {
-				setValue(2)
+				setValue(1)
 			} else if (
 				position > sectionsYOffset.projects - 300 &&
 				position < sectionsYOffset.projects + 100
 			) {
-				setValue(3)
+				setValue(2)
 			}
 			if (position > 300) {
 				setShowFab(true)
