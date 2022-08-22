@@ -47,6 +47,14 @@ export const light = responsiveFontSizes(
 						padding: '6px 24px'
 					}
 				}
+			},
+			MuiLink: {
+				styleOverrides: {
+					root: {
+						color: '#159CAB',
+						textDecoration: 'none'
+					}
+				}
 			}
 		}
 	})
@@ -88,6 +96,14 @@ export const dark = responsiveFontSizes(
 				styleOverrides: {
 					root: {
 						backgroundColor: '#00000026'
+					}
+				}
+			},
+			MuiLink: {
+				styleOverrides: {
+					root: {
+						color: '#159CAB',
+						textDecoration: 'none'
 					}
 				}
 			}
