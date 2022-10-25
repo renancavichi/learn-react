@@ -30,6 +30,7 @@ const PublicationCard = ({publication}: {publication: Publication}) => {
 				<ReactCountryFlag
 					countryCode={publication.flag}
 					aria-label={publication.country}
+          svg 
 				/>
 				{' ' + publication.country}
 			</Typography>
