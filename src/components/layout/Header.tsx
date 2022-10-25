@@ -65,7 +65,7 @@ const Header = () => {
 		if (!isScrollingRef.current) {
 			const position = window?.pageYOffset || 0
 			const home = document.querySelector('#home')
-			const articles = document.querySelector('#articles')
+			//const articles = document.querySelector('#articles')
 			const academic = document.querySelector('#academic')
 			const projects = document.querySelector('#projects')
 			const sectionsYOffset = {
