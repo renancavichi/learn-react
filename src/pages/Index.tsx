@@ -1,9 +1,9 @@
 import {useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
-import FullContainer from '../components/layout/FullContainer'
+//import FullContainer from '../components/layout/FullContainer'
 import Academic from '../components/sections/Academic'
 import HomeGreetings from '../components/sections/HomeGreetings'
-import SectionTitle from '../components/typography/SectionTitle'
+//import SectionTitle from '../components/typography/SectionTitle'
 import scrollSmoothTo from '../utils/scrollSmoothTo'
 
 const Index = () => {
@@ -22,12 +22,12 @@ const Index = () => {
 				<SectionTitle>Articles</SectionTitle>
 			</FullContainer> */}
 			<Academic />
-			<FullContainer grey={100} id="projects">
+			{/* <FullContainer grey={100} id="projects">
 				<SectionTitle>Projects</SectionTitle>
 			</FullContainer>
 			<FullContainer grey={900} height={800}>
 				<SectionTitle>Footer</SectionTitle>
-			</FullContainer>
+			</FullContainer> */}
 		</>
 	)
 }
