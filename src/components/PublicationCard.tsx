@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import ReactCountryFlag from 'react-country-flag'
 import Link from '@mui/material/Link'
+import Flag from 'react-world-flags'
 
 interface Publication {
 	title: string
@@ -26,12 +26,14 @@ const PublicationCard = ({publication}: {publication: Publication}) => {
 				}
 			})}
 		>
-			<Typography variant="subtitle1" component="p">
-				<ReactCountryFlag
-					countryCode={publication.flag}
+			<Typography variant="subtitle1" component="p" sx={{display: 'flex', alignItems: 'center', gap: '6px'}}>
+				<Flag
+					code={publication.flag}
 					aria-label={publication.country}
+          alt={publication.country}
+          style={{width: '22px', height: '12px', borderRadius: '2px'}}
 				/>
-				{' ' + publication.country}
+				<span> {publication.country}</span>
 			</Typography>
 
 			<Typography sx={{fontSize: '1.2rem', my: 1}} component="h3">
