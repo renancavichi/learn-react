@@ -34,11 +34,11 @@ const sections = [
 	{
 		label: 'Academic',
 		id: '#academic'
-	},
-	{
-		label: 'Projects',
-		id: '#projects'
 	}
+	// {
+	// 	label: 'Projects',
+	// 	id: '#projects'
+	// }
 ]
 
 const Header = () => {
@@ -65,9 +65,9 @@ const Header = () => {
 		if (!isScrollingRef.current) {
 			const position = window?.pageYOffset || 0
 			const home = document.querySelector('#home')
-			const articles = document.querySelector('#articles')
+			//const articles = document.querySelector('#articles')
 			const academic = document.querySelector('#academic')
-			const projects = document.querySelector('#projects')
+			//const projects = document.querySelector('#projects')
 			const sectionsYOffset = {
 				home:
 					home?.getBoundingClientRect().top !== undefined
@@ -80,11 +80,11 @@ const Header = () => {
 				academic:
 					academic?.getBoundingClientRect().top !== undefined
 						? academic?.getBoundingClientRect().top + position
-						: 0,
-				projects:
-					projects?.getBoundingClientRect().top !== undefined
-						? projects?.getBoundingClientRect().top + position
 						: 0
+				// projects:
+				// 	projects?.getBoundingClientRect().top !== undefined
+				// 		? projects?.getBoundingClientRect().top + position
+				// 		: 0
 			}
 			if (position < sectionsYOffset.home + 200) {
 				setValue(0)
@@ -98,12 +98,13 @@ const Header = () => {
 				position < sectionsYOffset.academic + 100
 			) {
 				setValue(1)
-			} else if (
-				position > sectionsYOffset.projects - 300 &&
-				position < sectionsYOffset.projects + 100
-			) {
-				setValue(2)
 			}
+			//else if (
+			// 	position > sectionsYOffset.projects - 300 &&
+			// 	position < sectionsYOffset.projects + 100
+			// ) {
+			// 	setValue(2)
+			// }
 			if (position > 300) {
 				setShowFab(true)
 			} else {
@@ -265,7 +266,7 @@ const attr = {
 		'aria-label': 'linkedin',
 		size: 'medium',
 		component: 'a',
-		href: 'https://www.linkedin.com/in/renancavichi/',
+		href: 'https://www.linkedin.com/in/renancavichi/?locale=en_US',
 		target: '_blank'
 	} as FabProps
 }
