@@ -104,7 +104,13 @@ const HomeGreetings = () => {
 							specialized on Web Development, Usability{' '}
 							<span style={{color: '#C4C4C4'}}>and</span> Agile Methods.
 						</Typography>
-						<Button variant="contained" sx={{mt: 3}}>
+						<Button
+							href="/assets/files/Resume-Web_Developer-Renan_Cavichi.pdf"
+							variant="contained"
+							target="_blank"
+							download
+							sx={{mt: 3}}
+						>
 							Download CV
 						</Button>
 					</Grid>
