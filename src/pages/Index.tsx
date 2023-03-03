@@ -2,6 +2,7 @@ import {useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 //import FullContainer from '../components/layout/FullContainer'
 import Academic from '../components/sections/Academic'
+import Experiences from '../components/sections/Experiences'
 import HomeGreetings from '../components/sections/HomeGreetings'
 //import SectionTitle from '../components/typography/SectionTitle'
 import scrollSmoothTo from '../utils/scrollSmoothTo'
@@ -22,6 +23,7 @@ const Index = () => {
 				<SectionTitle>Articles</SectionTitle>
 			</FullContainer> */}
 			<Academic />
+			<Experiences />
 			{/* <FullContainer grey={100} id="projects">
 				<SectionTitle>Projects</SectionTitle>
 			</FullContainer>
