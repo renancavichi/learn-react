@@ -60,10 +60,10 @@ const HomeGreetings = () => {
 						<img
 							src={AvatarRenanCavichi}
 							width="70%"
-							height="auto"
 							style={{
 								borderRadius: '50%',
-								border: '4px solid #fff'
+								border: '4px solid #fff',
+								aspectRatio: '1'
 							}}
 							alt="Renan Cavichi"
 						/>
