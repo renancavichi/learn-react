@@ -23,7 +23,8 @@ jobs:
           CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
           CONTENTFUL_TOKEN: ${{ secrets.CONTENTFUL_TOKEN }}
         run:
-        REACT_APP_CONTENTFUL_SPACE=$CONTENTFUL_SPACE REACT_APP_CONTENTFUL_TOKEN=$CONTENTFUL_TOKEN npm run build
+          REACT_APP_CONTENTFUL_SPACE=$CONTENTFUL_SPACE
+          REACT_APP_CONTENTFUL_TOKEN=$CONTENTFUL_TOKEN npm run build
       - name: Publish
         uses: cloudflare/pages-action@1
         with:
