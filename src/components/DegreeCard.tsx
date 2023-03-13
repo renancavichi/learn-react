@@ -41,7 +41,7 @@ const DegreeCard = ({degree}: {degree: Degree}) => {
 					mt: 1,
 					mb: 2
 				})}
-			></Divider>
+			/>
 			<Typography variant="h6" component="h4">
 				{degree.school + ' '}
 				<Typography
