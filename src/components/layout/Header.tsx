@@ -34,11 +34,11 @@ const sections = [
 	{
 		label: 'Academic',
 		id: '#academic'
+	},
+	{
+		label: 'Experiences',
+		id: '#experiences'
 	}
-	// {
-	// 	label: 'Projects',
-	// 	id: '#projects'
-	// }
 ]
 
 const Header = () => {
@@ -67,7 +67,7 @@ const Header = () => {
 			const home = document.querySelector('#home')
 			//const articles = document.querySelector('#articles')
 			const academic = document.querySelector('#academic')
-			//const projects = document.querySelector('#projects')
+			const experiences = document.querySelector('#experiences')
 			const sectionsYOffset = {
 				home:
 					home?.getBoundingClientRect().top !== undefined
@@ -80,11 +80,11 @@ const Header = () => {
 				academic:
 					academic?.getBoundingClientRect().top !== undefined
 						? academic?.getBoundingClientRect().top + position
+						: 0,
+				experiences:
+					experiences?.getBoundingClientRect().top !== undefined
+						? experiences?.getBoundingClientRect().top + position
 						: 0
-				// projects:
-				// 	projects?.getBoundingClientRect().top !== undefined
-				// 		? projects?.getBoundingClientRect().top + position
-				// 		: 0
 			}
 			if (position < sectionsYOffset.home + 200) {
 				setValue(0)
@@ -98,13 +98,12 @@ const Header = () => {
 				position < sectionsYOffset.academic + 100
 			) {
 				setValue(1)
+			} else if (
+				position > sectionsYOffset.experiences - 300 &&
+				position < sectionsYOffset.experiences + 100
+			) {
+				setValue(2)
 			}
-			//else if (
-			// 	position > sectionsYOffset.projects - 300 &&
-			// 	position < sectionsYOffset.projects + 100
-			// ) {
-			// 	setValue(2)
-			// }
 			if (position > 300) {
 				setShowFab(true)
 			} else {
